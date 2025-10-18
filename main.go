@@ -10,6 +10,13 @@ import (
     "gopkg.in/yaml.v3"
 )
 
+type PodConfig struct {
+    APIVersion string                 `yaml:"apiVersion"`
+    Kind       string                 `yaml:"kind"`
+    Metadata   map[string]interface{} `yaml:"metadata"`
+    Spec       map[string]interface{} `yaml:"spec"`
+}
+
 type ValidationError struct {
     File    string
     Line    int
@@ -21,13 +28,6 @@ func (e ValidationError) Error() string {
         return fmt.Sprintf("%s:%d %s", e.File, e.Line, e.Message)
     }
     return fmt.Sprintf("%s %s", e.File, e.Message)
-}
-
-type PodConfig struct {
-    APIVersion string                 `yaml:"apiVersion"`
-    Kind       string                 `yaml:"kind"`
-    Metadata   map[string]interface{} `yaml:"metadata"`
-    Spec       map[string]interface{} `yaml:"spec"`
 }
 
 type Validator struct {
@@ -64,7 +64,8 @@ func (v *Validator) Validate() bool {
 
 func (v *Validator) PrintErrors() {
     for _, err := range v.errors {
-        fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+        //fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+      fmt.Fprintf(os.Stdout, "%s\n", err.Error())
     }
 }
 
