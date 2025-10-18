@@ -6,6 +6,7 @@ import (
     "regexp"
     "strconv"
     "strings"
+    "path/filepath"
 
     "gopkg.in/yaml.v3"
 )
@@ -24,10 +25,11 @@ type ValidationError struct {
 }
 
 func (e ValidationError) Error() string {
+    filename := filepath.Base(e.File)
     if e.Line > 0 {
-        return fmt.Sprintf("%s:%d %s", e.File, e.Line, e.Message)
+        return fmt.Sprintf("%s:%d %s", filename, e.Line, e.Message)
     }
-    return fmt.Sprintf("%s %s", e.File, e.Message)
+    return fmt.Sprintf("%s %s", filename, e.Message)
 }
 
 type Validator struct {
