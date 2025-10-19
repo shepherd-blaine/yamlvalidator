@@ -66,7 +66,7 @@ func (v *Validator) Validate() bool {
 
 func (v *Validator) PrintErrors() {
     for _, err := range v.errors {
-        //fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+      //fmt.Fprintf(os.Stderr, "%s\n", err.Error())
       fmt.Fprintf(os.Stdout, "%s\n", err.Error())
     }
 }
