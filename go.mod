@@ -1,4 +1,4 @@
-module github.com/zidrakis/yamlvalidator
+module github.com/shepherd-blaine/yamlvalidator
 
 go 1.22
 
