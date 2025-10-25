@@ -73,7 +73,7 @@ func (v *Validator) PrintErrors() {
 
 func main() {
     if len(os.Args) != 2 {
-        fmt.Fprintf(os.Stderr, "Usage: %s <yaml-file>\n", os.Args[0])
+        fmt.Fprintf(os.Stdout, "Usage: %s <yaml-file>\n", os.Args[0])
         os.Exit(1)
     }
 
@@ -86,13 +86,13 @@ func main() {
 func validateYAML(filePath string) error {
     content, err := os.ReadFile(filePath)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "%s cannot read file content: %v\n", filePath, err)
+        fmt.Fprintf(os.Stdout, "%s cannot read file content: %v\n", filePath, err)
         return err
     }
 
     var root yaml.Node
     if err := yaml.Unmarshal(content, &root); err != nil {
-        fmt.Fprintf(os.Stderr, "%s cannot unmarshal file content: %v\n", filePath, err)
+        fmt.Fprintf(os.Stdout, "%s cannot unmarshal file content: %v\n", filePath, err)
         return err
     }
 
